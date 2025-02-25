@@ -53,6 +53,7 @@ body {
   border-radius: 10px;
   font-family: "customfont";
   cursor: pointer;
+  text-decoration: none;
 }
 
 .strike {
@@ -293,6 +294,7 @@ body {
   border-radius: 10px;
   font-family: "customfont";
   cursor: pointer;
+  text-decoration: none;
 }
 
 /* testimonial */
