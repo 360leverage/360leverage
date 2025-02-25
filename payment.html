@@ -7,32 +7,137 @@
     <link rel="stylesheet" href="payment.css" />
   </head>
   <body>
-    <div class="payment-div">
-      <span style="color: #2789f8; font-size: 32px"> Congratulations! </span>
-      <h1>you made a right choice</h1>
-      <div class="fresher">
-        <p class="f-p">Are you fresher?</p>
-        <div class="pack-div">
-          <p>Package includes:</p>
-          <p>Professionally Designed <br />ATS-friendly CV Template</p>
-          <p><span style="color: red">FREE</span>Cover Letter</p>
-          <p><span style="color: red">FREE</span>Email Template</p>
-        </div>
-        <button>Fresher</button>
+    <div class="big-div" id="big-div">
+      <div class="small-div">
+        <span style="color: #2789f8; font-size: 32px"> Congratulations! </span>
+        <h1>you made a right choice</h1>
       </div>
-      <div class="experience">
-        <p class="e-p">Are you Experienced?</p>
-        <div class="pack-div">
-          <p>Package includes:</p>
-          <p>
-            Professionally Designed<br />
-            ATS-friendly CV Template
-          </p>
-          <p><span style="color: red">FREE</span>Cover Letter</p>
-          <p><span style="color: red">FREE</span>Email Template</p>
+      <form id="paymentForm" class="form" onsubmit="return validateForm()">
+        <label for="name" class="label">Name</label>
+        <input type="text" id="name" name="name" class="input" /><br /><br />
+
+        <label for="email" class="label">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="input"
+          required
+        /><br /><br />
+
+        <label for="contact" class="label">Contact</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          class="input"
+          required
+        /><br /><br />
+      </form>
+      <div class="payment-div">
+        <div class="fresher">
+          <p class="f-p">Fresher/Intern Package</p>
+          <div class="pack-div">
+            <p>Package includes:</p>
+            <p>Professionally Designed <br />ATS-friendly CV Template</p>
+            <p><span style="color: red">FREE</span> Cover Letter</p>
+            <p><span style="color: red">FREE</span> Email Template</p>
+          </div>
+          <button onclick="payWithRazorpay('fresher')">Pay &#8377;99</button>
         </div>
-        <button>Experienced</button>
+        <div class="experience">
+          <p class="e-p">Experienced Package</p>
+          <div class="pack-div">
+            <p>Package includes:</p>
+            <p>
+              Professionally Designed<br />
+              ATS-friendly CV Template
+            </p>
+            <p><span style="color: red">FREE</span> Cover Letter</p>
+            <p><span style="color: red">FREE</span> Email Template</p>
+            <p>
+              <span style="color: red">+1</span> Extra ATS-friendly CV Template
+            </p>
+          </div>
+          <button onclick="payWithRazorpay('experienced')">
+            Pay &#8377;149
+          </button>
+        </div>
       </div>
     </div>
+
+    <div
+      href="./assets/Cover-Letter.docx"
+      id="downloadDiv"
+      style="display: none; text-align: center; margin-top: 20px"
+    >
+      <h2>All the best!</h2>
+      <button onclick="downloadContent()" class="download-button">
+        Download Your Package
+      </button>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+      function validateForm() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var contact = document.getElementById("contact").value;
+
+        // Check if all fields are filled out
+        if (name === "" || email === "" || contact === "") {
+          alert("Please fill out all the required fields before proceeding.");
+          return false; // Prevent Razorpay payment if fields are empty
+        }
+        return true; // Allow Razorpay payment if all fields are filled
+      }
+
+      function payWithRazorpay(packageType) {
+        if (!validateForm()) {
+          return; // Exit function if form validation fails
+        }
+
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var contact = document.getElementById("contact").value;
+
+        var options = {
+          key: "rzp_test_42PNyESRhyHYSG", // Replace with your Razorpay Key
+          amount: packageType === "fresher" ? 9900 : 14900, // Amount in paise (5000 = ₹50)
+          currency: "INR",
+          name: "360Leverage",
+          description: "Purchase Package",
+          image: "./assets/hero.png", // Logo URL
+          handler: function (response) {
+            // On payment success, show the download button
+            alert("Payment Successful! You can now download your package.");
+            document.getElementById("downloadDiv").style.display = "block";
+            document.getElementById("big-div").style.display = "none";
+          },
+          prefill: {
+            name: name,
+            email: email,
+            contact: contact,
+          },
+          notes: {
+            package_type: packageType, // Fresher or Experienced package
+          },
+          theme: {
+            color: "#2789f8",
+          },
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open(); // Open the Razorpay payment modal
+      }
+
+      // Function to simulate file download
+      function downloadContent() {
+        // This is just a placeholder URL for demonstration. Replace it with the actual file URL.
+        const downloadUrl = "./assets/Cover-Letter.docx";
+        window.location.href = downloadUrl; // Trigger the download
+      }
+    </script>
   </body>
 </html>
