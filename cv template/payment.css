@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "customfont"; /* You can choose the name for your font */
+  src: url("assets/Euclid\ Circular\ A\ Regular.ttf") format("opentype"); /* Link to your OTF file */
+  font-weight: bold; /* Optional: Define if the font has different weights */
+  font-style: italic; /* Optional: Define if the font has different styles like italic */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: customfont;
+  line-height: 1.6;
+}
+
+.payment-div {
+  background-color: rgb(242, 254, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 40px;
+}
+
+.f-p {
+  font-size: 1.5rem;
+}
+
+.e-p {
+  font-size: 1.5rem;
+}
+
+.payment-div button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: #2789f8;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-family: "customfont";
+  cursor: pointer;
+}
