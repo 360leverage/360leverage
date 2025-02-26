@@ -38,7 +38,7 @@
           id="contact"
           name="contact"
           class="input"
-          placeholder="9844695187"
+          placeholder="9999999999"
           required
         /><br /><br />
       </form>
@@ -150,7 +150,23 @@
           alert("Please fill out all the required fields before proceeding.");
           return false; // Prevent Razorpay payment if fields are empty
         }
-        return true; // Allow Razorpay payment if all fields are filled
+
+        // Validate email format (must contain "@" and ".")
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        // Validate contact number (should be exactly 10 digits)
+        var contactPattern = /^\d{10}$/; // Matches exactly 10 digits
+        if (!contactPattern.test(contact)) {
+          alert("Please enter a valid 10-digit contact number.");
+          return false;
+        }
+
+        // If all validations pass, allow Razorpay payment
+        return true;
       }
 
       function payWithRazorpay(packageType) {
