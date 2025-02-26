@@ -200,6 +200,12 @@ body {
   margin-left: 20px;
 }
 
+@media (min-width: 1000px) and (max-width: 2000px) {
+  .story {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
 /* stats placement */
 
 .stats {
@@ -230,6 +236,14 @@ body {
   height: 1px;
   margin-top: 10px;
   border: dashed 1px grey;
+}
+
+@media (min-width: 1000px) and (max-width: 2000px) {
+  .stats {
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
 }
 
 /* key benefits */
@@ -288,6 +302,13 @@ body {
   .key-content p {
     font-size: 1.2rem;
     line-height: 1.8;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 2000px) {
+  .key {
+    width: 60%;
+    margin: 0 auto;
   }
 }
 
@@ -480,6 +501,13 @@ h2 {
 .down {
   font-size: 1.8rem;
   margin-left: 10px;
+}
+
+@media (min-width: 1000px) and (max-width: 2000px) {
+  .faq {
+    width: 60%;
+    margin: 0 auto;
+  }
 }
 
 /* pricing */

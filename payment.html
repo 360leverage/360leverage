@@ -14,7 +14,13 @@
       </div>
       <form id="paymentForm" class="form" onsubmit="return validateForm()">
         <label for="name" class="label">Name</label>
-        <input type="text" id="name" name="name" class="input" /><br /><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="input"
+          placeholder="Vishnu Singh"
+        /><br /><br />
 
         <label for="email" class="label">Email</label>
         <input
@@ -22,6 +28,7 @@
           id="email"
           name="email"
           class="input"
+          placeholder="vishnu@gmail.com"
           required
         /><br /><br />
 
@@ -31,12 +38,15 @@
           id="contact"
           name="contact"
           class="input"
+          placeholder="9844695187"
           required
         /><br /><br />
       </form>
       <div class="payment-div">
         <div class="fresher">
-          <p class="f-p">Fresher/Intern Package</p>
+          <p class="f-p">
+            <span style="color: #2789f8">Fresher/Intern </span> Package
+          </p>
           <div class="pack-div">
             <p>Package includes:</p>
             <p>Professionally Designed <br />ATS-friendly CV Template</p>
@@ -46,7 +56,9 @@
           <button onclick="payWithRazorpay('fresher')">Pay &#8377;99</button>
         </div>
         <div class="experience">
-          <p class="e-p">Experienced Package</p>
+          <p class="e-p">
+            <span style="color: #2789f8">Experienced </span>Package
+          </p>
           <div class="pack-div">
             <p>Package includes:</p>
             <p>
@@ -56,7 +68,7 @@
             <p><span style="color: red">FREE</span> Cover Letter</p>
             <p><span style="color: red">FREE</span> Email Template</p>
             <p>
-              <span style="color: red">+1</span> Extra ATS-friendly CV Template
+              <span style="color: red">+1</span> Bonus ATS-friendly CV Template
             </p>
           </div>
           <button onclick="payWithRazorpay('experienced')">
@@ -66,15 +78,63 @@
       </div>
     </div>
 
+    <div class="fresher-download" id="fresherDownloadDiv" style="display: none">
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <h2>All the best!</h2>
+        <button onclick="downloadContent('fresher')" class="download-button">
+          Download Fresher CV Template
+        </button>
+      </div>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <button onclick="downloadContent1('fresher')" class="download-button">
+          Download Cover Letter
+        </button>
+      </div>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <button onclick="downloadContent2('fresher')" class="download-button">
+          Download Email Template
+        </button>
+      </div>
+    </div>
+
     <div
-      href="./assets/Cover-Letter.docx"
-      id="downloadDiv"
-      style="display: none; text-align: center; margin-top: 20px"
+      class="experienced-download"
+      id="experiencedDownloadDiv"
+      style="display: none"
     >
-      <h2>All the best!</h2>
-      <button onclick="downloadContent()" class="download-button">
-        Download Your Package
-      </button>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <h2>All the best!</h2>
+        <button
+          onclick="downloadContent('experienced')"
+          class="download-button"
+        >
+          Download Experienced CV Template
+        </button>
+      </div>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <button
+          onclick="downloadContent1('experienced')"
+          class="download-button"
+        >
+          Download Cover Letter Template
+        </button>
+      </div>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <button
+          onclick="downloadContent2('experienced')"
+          class="download-button"
+        >
+          Download Email Template
+        </button>
+      </div>
+      <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+        <button
+          onclick="downloadContent3('experienced')"
+          class="download-button"
+        >
+          Download Bonus Template
+        </button>
+      </div>
     </div>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -112,7 +172,17 @@
           handler: function (response) {
             // On payment success, show the download button
             alert("Payment Successful! You can now download your package.");
-            document.getElementById("downloadDiv").style.display = "block";
+            if (packageType === "fresher") {
+              document.getElementById("fresherDownloadDiv").style.display =
+                "block";
+              document.getElementById("experiencedDownloadDiv").style.display =
+                "none";
+            } else {
+              document.getElementById("experiencedDownloadDiv").style.display =
+                "block";
+              document.getElementById("fresherDownloadDiv").style.display =
+                "none";
+            }
             document.getElementById("big-div").style.display = "none";
           },
           prefill: {
@@ -132,11 +202,37 @@
         rzp1.open(); // Open the Razorpay payment modal
       }
 
-      // Function to simulate file download
-      function downloadContent() {
-        // This is just a placeholder URL for demonstration. Replace it with the actual file URL.
-        const downloadUrl = "./assets/Cover-Letter.docx";
-        window.location.href = downloadUrl; // Trigger the download
+      function downloadContent(packageType) {
+        const downloadUrl =
+          packageType === "fresher"
+            ? "./assets/Fresher CV.docx"
+            : "./assets/Experienced CV1.docx";
+        window.location.href = downloadUrl;
+      }
+
+      function downloadContent1(packageType) {
+        const downloadUrl =
+          packageType === "fresher"
+            ? "./assets/Fresher Cover Letter.docx"
+            : "./assets/Experienced Cover Letter.docx";
+        window.location.href = downloadUrl;
+      }
+
+      function downloadContent2(packageType) {
+        const downloadUrl =
+          packageType === "fresher"
+            ? "./assets/Fresher Email Template.docx"
+            : "./assets/Experienced Email Template.docx";
+        window.location.href = downloadUrl;
+      }
+
+      function downloadContent3(packageType) {
+        if (packageType === "experienced") {
+          const downloadUrl = "./assets/Experienced CV 2.docx"; // Additional template for experienced users
+          window.location.href = downloadUrl;
+        } else {
+          alert("Error Downloading file");
+        }
       }
     </script>
   </body>
