@@ -250,6 +250,10 @@
           alert("Error Downloading file");
         }
       }
+
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault(); // Disable right-click
+      });
     </script>
   </body>
 </html>
