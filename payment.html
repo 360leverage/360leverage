@@ -62,9 +62,9 @@
             <p>Professionally Designed <br />ATS-friendly CV Template</p>
             <p><span style="color: red">FREE</span> Cover Letter</p>
             <p><span style="color: red">FREE</span> Email Template</p>
-            <p><span style="color: red">FREE</span> 700+ HR Emails</p>
+            <p><span style="color: red">FREE</span> 1000+ HR Emails</p>
           </div>
-          <button onclick="payWithRazorpay('fresher')">Pay &#8377;99</button>
+          <button onclick="payWithRazorpay('fresher')">Pay &#8377;49</button>
         </div>
         <div class="experience">
           <p class="e-p">
@@ -78,13 +78,13 @@
             </p>
             <p><span style="color: red">FREE</span> Cover Letter</p>
             <p><span style="color: red">FREE</span> Email Template</p>
-            <p><span style="color: red">FREE</span> 700+ HR Emails</p>
+            <p><span style="color: red">FREE</span> 1000+ HR Emails</p>
             <p>
               <span style="color: red">+1</span> Bonus ATS-friendly CV Template
             </p>
           </div>
           <button onclick="payWithRazorpay('experienced')">
-            Pay &#8377;149
+            Pay &#8377;99
           </button>
         </div>
       </div>
@@ -109,7 +109,7 @@
       </div>
       <div id="downloadDiv" style="text-align: center; margin-top: 20px">
         <button onclick="downloadContent4('fresher')" class="download-button">
-          Download 700+ HR Emails
+          Download 1000+ HR Emails
         </button>
       </div>
     </div>
@@ -157,7 +157,7 @@
           onclick="downloadContent4('experienced')"
           class="download-button"
         >
-          Download 700+ HR Emails
+          Download 1000+ HR Emails
         </button>
       </div>
     </div>
@@ -205,7 +205,7 @@
 
         var options = {
           key: "rzp_live_viBV10RLw9QciW",
-          amount: packageType === "fresher" ? 9900 : 14900, // Amount in paise (5000 = ₹50)
+          amount: packageType === "fresher" ? 4900 : 9900, // Amount in paise (5000 = ₹50)
           currency: "INR",
           name: "360Leverage",
           description: "Purchase Package",
@@ -278,12 +278,12 @@
 
       function downloadContent4(packageType) {
         if (packageType === "experienced" || packageType === "fresher") {
-          const downloadUrl = "./assets/700+ HR email_Companies.pdf";
+          const downloadUrl = "./assets/1000+ HR email_Companies.pdf";
 
           // Create an invisible link and trigger the download
           const link = document.createElement("a");
           link.href = downloadUrl;
-          link.download = "700+ HR Emails"; // Ensure a proper file name for downloading
+          link.download = "1000+ HR Emails"; // Ensure a proper file name for downloading
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
