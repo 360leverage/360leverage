@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>100+ HR list</title>
+    <link rel="stylesheet" href="hr.css" />
+  </head>
+  <body>
+    <div id="downloadDiv" style="text-align: center; margin-top: 20px">
+      <button onclick="downloadContent()" class="download-button">
+        Download 100+ HR Emails
+      </button>
+    </div>
+
+    <script>
+      function downloadContent() {
+        const downloadUrl = "./assets/100+ HR email_Companies.pdf";
+
+        // Create an invisible link and trigger the download
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = "100+ HR Emails"; // Ensure a proper file name for downloading
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+  </body>
+</html>
